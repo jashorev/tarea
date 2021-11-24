@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+ 
+  
+<head>
+	<meta charset="UTF-8">
+	<title>inf--113</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="estilos.css">
+	<link rel="stylesheet" href="fonts.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="main.js"></script>
+</head>
+
+<body>
+    
+    <header class="">
+    </header>
+<main class="main">
+    
+
+    <form class="tf">
+		<div class="col-sm-12">
+			<p class="text-center">hoy calcularemos cuantos años tiene tu compañero peludo</p>
+		</div>
+		
+		<div class="form-group">
+			<label  class="col-sm-4 control-label">mi compañero peludito se llama</label>
+			<div class="col-sm-8">
+				<input type="text" size="20" maxlength="20" name="nombre" id="nombre" value="" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Y tiene</label>
+			<div class="col-sm-4">
+				<div class="input-group">
+					<input type="number" name="anos" id="anos" value="1" min="0" class="form-control" >
+					<div class="">años</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="">
+					<input type="number" name="meses" id="meses" value="0" min="0" class="form-control">
+					<div class="">meses</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-12">
+				<button type="submit" onclick="calcula_edad(); return false;" class="btn btn-success btn-lg btn-block">Calcular</button>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-xs-12">
+				<div id="calcresult" class="alert alert-success hidden"></div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-12">
+								<a class="btn btn-info btn-block" target="_blank"></a>
+				
+				<a rel:gt_label="Calcula la edad de tu perro"  class="btn btn-primary btn-block compartir_fb hidden" rel:gt_act="share/facebook" style="margin-top:10px;"  onclick="fb()" type="box_count" class="shareBtn big square">
+					<i class="glyphicon glyphicon-thumbs-up"></i></a>
+			</div>
+		</div>
+	</form>
+	<! –– en script para calcular los años del perrito––>
+    <script type="text/javascript">
+	var nombre;
+	var anos_finales;
+
+	function calcula_edad() {/*calculamos la edad del cachorro*/
+		var ano = document.querySelector('#anos').value*1.00;
+		
+		nombre = document.querySelector('#nombre').value;
+		var meses = document.querySelector('#meses').value;
+		var meses_calc = meses/12;
+		var total = ano + meses_calc;
+		var total2 = Math.pow(total,2);
+		anos_finales = ((-0.1291)*total2)+(7.2955*total)+6.4133;
+		anos_finales = Math.round(anos_finales*100)/100;
+		
+		// mostramos el resultado
+		var str_resultado = "Tu perro {SP0} tiene {SP1} años humanos";
+
+		document.querySelector('#calcresult').innerHTML = str_resultado;
+		document.querySelector('#calcresult').innerHTML = str_resultado.format(nombre, anos_finales );
+		
+		// mostramos el campo  ocultos
+		document.querySelector('#calcresult').classList.remove('hidden');
+		document.querySelector(".compartir_fb").classList.remove('hidden');
+	}
+
+
+	// Creamos una función para simular sprintf en javascript
+	String.prototype.format = function() {
+		var formatted = this;
+		for (var i = 0; i < arguments.length; i++) {
+			var regexp = new RegExp('\\{SP'+i+'\\}', 'gi');
+			formatted = formatted.replace(regexp, arguments[i]);
+		}
+		return formatted;
+	};
+
+</script>						
+</main>
+
+
+
+<footer>
+    <p>la paz bolivia | Tel: 123-456 | Email: jashopro@gmail.com</p>
+    <p>Copyright 2021 <span style="color: #FFF06F  ;">jlarico quispe joel</span></p>
+</footer>
+</body>
+</html>
